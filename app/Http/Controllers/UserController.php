@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+
+use App\Repositories\UsersRepository;
+use Illuminate\Http\Request;
 
 
 class UserController extends AppBaseController
@@ -13,7 +14,7 @@ class UserController extends AppBaseController
     /** @var  usersRepository */
     private $usersRepository;
 
-    public function __construct(UserRepository $usersRepo)
+    public function __construct(UsersRepository $usersRepo)
     {
         $this->usersRepository = $usersRepo;
     }
@@ -27,7 +28,8 @@ class UserController extends AppBaseController
     {
         $users = $this->usersRepository->all();
 
-        dd($users);
+        return view('user.index')
+            ->with('users',  $users);
     }
 
     /**
@@ -37,7 +39,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**

@@ -10,7 +10,7 @@ use App\Repositories\BaseRepository;
  * @package App\Repositories
  */
 
-class UserRepository extends BaseRepository
+class UsersRepository extends BaseRepository
 {
     /**
      * @var array
