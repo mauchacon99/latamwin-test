@@ -10,7 +10,7 @@ use App\Repositories\BaseRepository;
  * @package App\Repositories
  */
 
-class UserRepository extends BaseRepository
+class UsersRepository extends BaseRepository
 {
     /**
      * @var array
@@ -37,5 +37,10 @@ class UserRepository extends BaseRepository
     public function model()
     {
         return User::class;
+    }
+
+    public function create($user)
+    {
+        return $this->model->create($user);
     }
 }

@@ -13,6 +13,8 @@ class RoleController extends Controller
     public function __construct(RolesRepository $rolesRepo)
     {
         $this->rolesRepository = $rolesRepo;
+        // protect controller
+        $this->middleware(['role:admin']);
     }
 
     /**
@@ -43,7 +45,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
