@@ -1,6 +1,13 @@
 /node_modules
 /public/hot
 /public/storage
+/public/css/app.css
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2
+/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf
 /storage/*.key
 /vendor
 .env
@@ -13,3 +20,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
