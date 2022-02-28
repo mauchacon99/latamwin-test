@@ -31,5 +31,7 @@
   
 ## 4. Sign In
 You can use any of the following pre-existing credentials for signing in:
-
-admin@admin.com	password
+<ul>
+  <li> -e admin@admin.com	</li> 
+  <li> -p password </li>
+</ul>
