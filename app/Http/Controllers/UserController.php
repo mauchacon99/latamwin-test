@@ -6,8 +6,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\User\UpdateOrCreateRequest as RequestUser;
 use App\Models\User;
 use App\Repositories\{UsersRepository, rolesRepository};
-
-
+use Illuminate\Support\Facades\Artisan;
 
 class UserController extends AppBaseController
 {
@@ -30,7 +29,7 @@ class UserController extends AppBaseController
      */
     public function index()
     {
-        $users = $this->usersRepository->all();
+        $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);
 
         return view('user.index')->with('users',  $users);
     }
@@ -59,7 +58,7 @@ class UserController extends AppBaseController
         $user = $this->usersRepository->create($request->prepareInputs());
         // assign role the user
         $user->assignRole($request->role);
-
+       
         return redirect()->route('users.index', [
             'users' => $this->usersRepository->all()
         ]);
@@ -73,8 +72,7 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-
-        $user =  $this->usersRepository->find($id);
+        $user = $this->usersRepository->find($id);
 
         return view('user.edit')->with([
             'roles' => $this->rolesRepository->all(),
@@ -91,10 +89,12 @@ class UserController extends AppBaseController
      */
     public function update(RequestUser $request, $id)
     {
-        $this->usersRepository->update($request->prepareInputs(), $id);
-        
+        $user = $this->usersRepository->update($request->prepareInputs(), $id);
+        $user->Roles()->sync([$request->role] ?? []);
+
+        $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);
         return redirect()->route('users.index', [
-            'users' => $this->usersRepository->all()
+            'users' =>  $users,
         ]);
     }
 
@@ -108,8 +108,9 @@ class UserController extends AppBaseController
     {
         $this->usersRepository->delete($id);
 
+        $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);
         return redirect()->route('users.index', [
-            'users' => $this->usersRepository->all()
+            'users' => $users
         ]);
     }
 }

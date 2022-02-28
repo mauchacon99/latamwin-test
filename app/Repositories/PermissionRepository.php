@@ -3,14 +3,14 @@
 namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 /**
- * Class RolesRepository
+ * Class PermissionRepository
  * @package App\Repositories
  */
 
-class RolesRepository extends BaseRepository
+class PermissionRepository extends BaseRepository
 {
     /**
      * @var array
@@ -26,14 +26,12 @@ class RolesRepository extends BaseRepository
     {
         return $this->fieldSearchable;
     }
-     
-    
 
     /**
      * Configure the Model
      **/
     public function model()
     {
-        return Role::class;
+        return Permission::class;
     }
 }
