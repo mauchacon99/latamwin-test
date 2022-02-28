@@ -28,7 +28,7 @@
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     @can('user.edit')
-                        <a href="{{ route('users.edit', [ $user->id ]) }}" class='btn btn-default btn-xs'>
+                        <a  href="{{ route('users.edit', [ $user->id ]) }}">
                             <button  
                                 type="button"  
                                 class="ml-3 inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 "
@@ -38,12 +38,12 @@
                         </a>
                     @endcan
                     @can('user.delete')
-                    <button 
-                        type="submit" 
-                        class="ml-3 inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 "
-                    >
-                        <i class="far fa-trash-alt"></i>
-                    </button>
+                        <button 
+                            type="submit" 
+                            class="ml-3 inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 "
+                        >
+                            <i class="far fa-trash-alt"></i>
+                        </button>
                     @endcan
                 </form>
             </td>

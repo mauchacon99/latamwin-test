@@ -26,8 +26,6 @@ class RolesRepository extends BaseRepository
     {
         return $this->fieldSearchable;
     }
-     
-    
 
     /**
      * Configure the Model

@@ -101,9 +101,11 @@ class UserController extends AppBaseController
     public function update(RequestUser $request, $id)
     {
         $user = $this->usersRepository->update($request->prepareInputs(), $id);
+
         $user->Roles()->sync([$request->role] ?? []);
 
         $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);
+        
         return redirect()->route('users.index', [
             'users' =>  $users,
         ]);

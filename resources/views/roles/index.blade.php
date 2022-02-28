@@ -25,25 +25,30 @@
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-100">
                                             <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    name</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    permissions</th>
+                                                <th 
+                                                    scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    name
+                                                </th>
+                                                <th 
+                                                    scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    permissions
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
                                             @if($roles->isNotEmpty())
                                                 @each('roles._row', $roles, 'rol')
                                             @else
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    No result :(
-                                                </div>
-                                            </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        No result :(
+                                                    </div>
+                                                </td>
                                             @endif
-                                           
                                         </tbody>
                                     </table>
                                 </div>

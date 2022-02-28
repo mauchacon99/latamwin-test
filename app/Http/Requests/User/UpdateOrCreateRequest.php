@@ -29,7 +29,7 @@ class UpdateOrCreateRequest extends FormRequest
         return [
             'name'     => ['present', 'required', 'string'],
             'password' => $this->user ? ['present'] : ['present', 'required', 'string'],
-            'role'   => [Rule::in(Role::all()->pluck("id"))],
+            'role'     => [Rule::in(Role::all()->pluck("id"))],
             'email'    => [
                 'present',
                 'required',

@@ -8,7 +8,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="verflow-hidden">
                 <div class="p-6  border-b border-gray-200">
-
                     <div class=" w-full flex justify-end items-center my-6">
                         @can('user.create')
                             <a href="{{ route('users.create') }}">
@@ -25,12 +24,18 @@
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-100">
                                             <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Email</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Role</th>
+                                                <th 
+                                                    scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Email
+                                                </th>
+                                                <th 
+                                                    scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Role
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
