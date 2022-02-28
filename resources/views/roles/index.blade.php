@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Usuarios
+            Roles
         </h2>
     </x-slot>
     <div class="py-8">
@@ -10,10 +10,10 @@
                 <div class="p-6  border-b border-gray-200">
 
                     <div class=" w-full flex justify-end items-center my-6">
-                        @can('user.create')
-                            <a href="{{ route('users.create') }}">
+                        @can('roles.create')
+                            <a href="{{ route('roles.create') }}">
                                 <x-button class="ml-3  ">
-                                    <i class="fas fa-plus mr-2"></i> Nuevo usuario
+                                    <i class="fas fa-plus mr-2"></i> Nuevo Rol
                                 </x-button>
                             </a>
                         @endcan
@@ -27,24 +27,23 @@
                                             <tr>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Email</th>
+                                                    name</th>
                                                 <th scope="col"
                                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Role</th>
+                                                    permissions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            @if ($users->isNotEmpty())
-                                                @each('user._row', $users, 'user')
+                                            @if($roles->isNotEmpty())
+                                                @each('roles._row', $roles, 'rol')
                                             @else
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex justify-end text-base">
-                                                        Not Result :( 
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    No result :(
+                                                </div>
+                                            </td>
                                             @endif
+                                           
                                         </tbody>
                                     </table>
                                 </div>

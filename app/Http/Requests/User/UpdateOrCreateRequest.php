@@ -5,7 +5,8 @@ namespace App\Http\Requests\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-
+use Spatie\Permission\Models\Role;
+ 
 class UpdateOrCreateRequest extends FormRequest
 {
     /**
@@ -25,11 +26,10 @@ class UpdateOrCreateRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'name'     => ['present', 'required', 'string'],
-            'password' => ['present', 'required', 'string'],
-            'role'     => ['present', 'required', 'string'],
+            'password' => $this->user ? ['present'] : ['present', 'required', 'string'],
+            'role'   => [Rule::in(Role::all()->pluck("id"))],
             'email'    => [
                 'present',
                 'required',
@@ -41,7 +41,7 @@ class UpdateOrCreateRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Prepare the data for insertion into the model.
      *
      * @return array
      */
