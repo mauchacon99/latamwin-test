@@ -27,42 +27,43 @@
         name="password" 
     />
     {{-- List Roles--}}
-     
-    <x-label for="roles" value="Roles" />
-    <select
-        class="form-select 
-                appearance-none
-                block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-normal
-                text-gray-700
-                bg-white 
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 
-                focus:bg-white 
-                focus:border-blue-600 
-                focus:outline-none"
-        name="role" 
-        id="role"
-        >
-        
-        @foreach ($roles as $rol)
-            <option 
-                value="{{ $rol->id }}" 
-                {{ old('role', $user->roles->all() ? $user->roles->first()->id : null ) == $rol->id ? ' selected' : '' }}
-                class="capitalize"
-            > 
-                {{ $rol->name }}  
-            </option>
-        @endforeach
-    </select>
+    @can('user.update-role')
+        <x-label for="roles" value="Roles" />
+        <select
+            class="form-select 
+                    appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white 
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 
+                    focus:bg-white 
+                    focus:border-blue-600 
+                    focus:outline-none"
+            name="role" 
+            id="role"
+            >
+            
+            @foreach ($roles as $rol)
+                <option 
+                    value="{{ $rol->id }}" 
+                    {{ old('role', $user->roles->all() ? $user->roles->first()->id : null ) == $rol->id ? ' selected' : '' }}
+                    class="capitalize"
+                > 
+                    {{ $rol->name }}  
+                </option>
+            @endforeach
+        </select>
+    @endcan
 
        
      

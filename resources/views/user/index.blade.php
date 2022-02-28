@@ -38,8 +38,8 @@
                                                 @each('user._row', $users, 'user')
                                             @else
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex justify-end">
-                                                        No exit
+                                                    <div class="flex justify-end text-base">
+                                                        Not Result :( 
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">

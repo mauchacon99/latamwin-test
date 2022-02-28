@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\Permissions\UpdateOrCreateRequest as PermissionRequest;
 use App\Http\Requests\Role\UpdateOrCreate as RequestRole;
 use App\Repositories\{PermissionRepository, RolesRepository};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends AppBaseController
@@ -30,6 +30,9 @@ class RoleController extends AppBaseController
      */
     public function index()
     {
+        if (!FacadesGate::allows('roles.index')) {
+            return abort(401);
+        }
         $roles = $this->rolesRepository->all();
 
         return view('roles.index')->with('roles',  $roles);
@@ -42,6 +45,9 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
+        if (!FacadesGate::allows('roles.create')) {
+            return abort(401);
+        }
         return view('roles.create')->with([
             'role'  =>  new Role
         ]);
@@ -70,6 +76,9 @@ class RoleController extends AppBaseController
      */
     public function edit($id)
     {
+        if (!FacadesGate::allows('roles.edit')) {
+            return abort(401);
+        }
         $role =  $this->rolesRepository->find($id);
 
         return view('roles.edit')->with([
@@ -101,8 +110,11 @@ class RoleController extends AppBaseController
      */
     public function destroy($id)
     {
-         $this->rolesRepository->delete($id);
-       
+        if (!FacadesGate::allows('roles.delete')) {
+            return abort(401);
+        }
+        $this->rolesRepository->delete($id);
+
         return redirect()->route('roles.index', [
             'roles' => $this->rolesRepository->all()
         ]);
@@ -116,6 +128,9 @@ class RoleController extends AppBaseController
      */
     public function assignPermissions($id)
     {
+        if (!FacadesGate::allows('roles.permissions')) {
+            return abort(401);
+        }
         return view('roles.permission')->with([
             'role'  =>   $this->rolesRepository->find($id),
             'permissions' => $this->permissionRepository->all()
@@ -135,7 +150,7 @@ class RoleController extends AppBaseController
         $role->Permissions()->sync($request->permissions ?? []);
 
         Artisan::call('cache:clear');
-        
+
         return redirect()->route('roles.index', [
             'roles' => $this->rolesRepository->all()
         ]);

@@ -7,6 +7,7 @@ use App\Http\Requests\User\UpdateOrCreateRequest as RequestUser;
 use App\Models\User;
 use App\Repositories\{UsersRepository, rolesRepository};
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 
 class UserController extends AppBaseController
 {
@@ -20,6 +21,7 @@ class UserController extends AppBaseController
     {
         $this->usersRepository = $usersRepo;
         $this->rolesRepository = $rolesRepo;
+
     }
 
     /**
@@ -29,6 +31,9 @@ class UserController extends AppBaseController
      */
     public function index()
     {
+        if (!FacadesGate::allows('user.index')) {
+            return abort(401);
+        }
         $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);
 
         return view('user.index')->with('users',  $users);
@@ -41,6 +46,9 @@ class UserController extends AppBaseController
      */
     public function create()
     {
+        if (!FacadesGate::allows('user.create')) {
+            return abort(401);
+        }
         return view('user.create')->with([
             'roles' =>  $this->rolesRepository->all(),
             'user'  =>  new User,
@@ -72,6 +80,9 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
+        if (!FacadesGate::allows('user.edit')) {
+            return abort(401);
+        }
         $user = $this->usersRepository->find($id);
 
         return view('user.edit')->with([
@@ -106,6 +117,9 @@ class UserController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!FacadesGate::allows('user.delete')) {
+            return abort(401);
+        }
         $this->usersRepository->delete($id);
 
         $users = $this->usersRepository->all()->whereNotIn('id', [auth()->user()->id]);

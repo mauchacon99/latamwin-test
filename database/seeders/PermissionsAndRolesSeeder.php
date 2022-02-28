@@ -18,14 +18,16 @@ class PermissionsAndRolesSeeder extends Seeder
 
         $admin = Role::create(['name' => 'admin']);
         // Permissions module user
+        Permission::create(['name' => 'user.index'])->assignRole($admin);
         Permission::create(['name' => 'user.edit'])->assignRole($admin);
         Permission::create(['name' => 'user.create'])->assignRole($admin);
         Permission::create(['name' => 'user.delete'])->assignRole($admin);
         Permission::create(['name' => 'user.update-role'])->assignRole($admin);
         // Permissions module roles
+        Permission::create(['name' => 'roles.index'])->assignRole($admin);
         Permission::create(['name' => 'roles.edit'])->assignRole($admin);
         Permission::create(['name' => 'roles.create'])->assignRole($admin);
         Permission::create(['name' => 'roles.delete'])->assignRole($admin);
-        Permission::create(['name' => 'roles.insert-permission'])->assignRole($admin);
+        Permission::create(['name' => 'roles.permissions'])->assignRole($admin);
     }
 }

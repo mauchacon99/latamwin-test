@@ -30,8 +30,8 @@
              {{ csrf_field() }}
              {{ method_field('DELETE') }}
 
-             @can('roles.insert-permission')
-                <a href="{{ route('roles.permissions', [$rol->id]) }}" class='btn btn-default btn-xs'>
+             @can('roles.permissions')
+                <a href="{{ route('roles.permissions', [ $rol->id ]) }}">
                     <button 
                         type="button"
                         class="ml-3 inline-flex items-center px-4 py-2 bg-purple-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 "
