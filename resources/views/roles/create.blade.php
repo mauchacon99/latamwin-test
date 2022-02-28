@@ -6,8 +6,14 @@
     </x-slot>
     <div class="py-12 bg-gray-50">
         <div class="max-w-7xl space-y-3 mx-auto sm:px-6 lg:px-8">
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <form method="POST" action="{{ route('roles.store') }}">
+            <x-auth-validation-errors 
+                class="mb-4" 
+                :errors="$errors" 
+            />
+            <form 
+                method="POST" 
+                action="{{ route('roles.store') }}"
+            >
                 @include('roles._fields')
                 <div class="flex justify-end items-center">
                     <x-button class="ml-3 mt-4">
