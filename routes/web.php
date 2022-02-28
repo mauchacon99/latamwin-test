@@ -22,6 +22,23 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/user.php';
-Route::resource('users', App\Http\Controllers\UserController::class);
+require __DIR__ . '\web\auth.php';
+
+
+
+Route::middleware('auth')->group(function () {
+    // routes user
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    // routes roles
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+});
+ 
+// routes user
+Route::group(['prefix' => 'user'], function () {
+    require __DIR__ . '\web\user.php';
+});
+
+// routes user
+Route::group(['prefix' => 'role'], function () {
+    require __DIR__ . '\web\role.php';
+});

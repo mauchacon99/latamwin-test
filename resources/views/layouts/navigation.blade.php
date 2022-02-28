@@ -12,15 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Dashboard
                     </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                        Usuarios
-                    </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('roles.*')">
-                        Roles
-                    </x-nav-link>
+                    @can('user.index')
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                            Usuarios
+                        </x-nav-link>
+                    @endcan
+                    @can('roles.index')
+                        <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.*')">
+                            Roles
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -29,7 +34,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->email }}</div>
+                            <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

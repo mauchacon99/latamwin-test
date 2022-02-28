@@ -1,3 +1,4 @@
+
     {{ csrf_field() }}
     {{-- Input for name --}}
     <x-label for="name" value="Name" />
@@ -25,11 +26,11 @@
         type="password"  
         name="password" 
     />
-    <div class="block mt-1 w-full">
+    {{-- List Roles--}}
+    @can('user.update-role')
         <x-label for="roles" value="Roles" />
-        <div class="mb-3 xl:w-96">
-            <select
-                class="form-select 
+        <select
+            class="form-select 
                     appearance-none
                     block
                     w-full
@@ -48,18 +49,21 @@
                     focus:bg-white 
                     focus:border-blue-600 
                     focus:outline-none"
-                name="role" 
-                id="role"
-                >
-                @foreach ($roles as $rol)
-                    <option 
-                        value="{{ $rol->name }}" 
-                        {{ old('role', $user->getRoleNames() ?? [0]) == $rol->name ? ' selected' : '' }}
-                        class="capitalize"
-                    > 
-                        {{ $rol->name }} 
-                    </option>
-                @endforeach
-            </select>
-        </div>
-    </div>
+            name="role" 
+            id="role"
+            >
+            
+            @foreach ($roles as $rol)
+                <option 
+                    value="{{ $rol->id }}" 
+                    {{ old('role', $user->roles->all() ? $user->roles->first()->id : null ) == $rol->id ? ' selected' : '' }}
+                    class="capitalize"
+                > 
+                    {{ $rol->name }}  
+                </option>
+            @endforeach
+        </select>
+    @endcan
+
+       
+     
