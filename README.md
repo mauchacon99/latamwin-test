@@ -29,3 +29,7 @@
     php artisan serve
     
   
+## Sign In
+You can use any of the following pre-existing credentials for signing in:
+
+admin@admin.com	password
