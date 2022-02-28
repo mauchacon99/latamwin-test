@@ -126,7 +126,7 @@ class RoleController extends AppBaseController
      * @param  int  $id role
      * @return \Illuminate\Http\Response
      */
-    public function assignPermissions($id)
+    public function assign_permissions($id)
     {
         if (!FacadesGate::allows('roles.permissions')) {
             return abort(401);
@@ -144,7 +144,7 @@ class RoleController extends AppBaseController
      * @param  int  $id role
      * @return \Illuminate\Http\Response
      */
-    public function insertPermissions(Request $request, $id)
+    public function insert_permissions(Request $request, $id)
     {
         $role = $this->rolesRepository->find($id);
         $role->Permissions()->sync($request->permissions ?? []);

@@ -29,8 +29,8 @@
     {{-- List Roles--}}
     @can('user.update-role')
         <x-label for="roles" value="Roles" />
-        <select
-            class="form-select 
+            <select
+                class="form-select 
                     appearance-none
                     block
                     w-full
@@ -49,8 +49,8 @@
                     focus:bg-white 
                     focus:border-blue-600 
                     focus:outline-none"
-            name="role" 
-            id="role"
+                name="role" 
+                id="role"
             >
             
             @foreach ($roles as $rol)
