@@ -23,8 +23,9 @@
 </ul>
 
 ## 3. Run
-    
+    cp .env.example .env
     php artisan migrate --seed
-    npm run watch
+    npm run dev
+    php artisan serve
     
   
