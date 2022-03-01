@@ -38,7 +38,7 @@ Route::group(['prefix' => 'user'], function () {
     require __DIR__ . '\web\user.php';
 });
 
-// routes user
+// routes role
 Route::group(['prefix' => 'role'], function () {
     require __DIR__ . '\web\role.php';
 });
